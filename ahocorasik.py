@@ -1,15 +1,15 @@
 import pandas as pd
 import ahocorasick
 
-from utils.utils import read_dict, get_ngram
+from utils.utils import read_dict, get_ngram, read
 
 
 class Dictionary:
-    def __init__(self,di_path='./saved_dict/disease_dict',sy_path='./saved_dict/symptom_dict',n_gram = 4):
+    def __init__(self,di_path='./saved_dict/disease_dict',sy_path='./saved_dict/symptom_dict',n_gram = 5):
         self.di_dict = read_dict(di_path)
         self.sy_dict = read_dict(sy_path)
-        self.max_n_gram = 4
-        
+        self.max_n_gram = n_gram
+
     def get_ner(self,sentence):
         disease = []
         symptoms = []
@@ -35,6 +35,7 @@ if __name__ == '__main__':
 
     data = pd.read_csv('./test_data/testB.csv',encoding='utf-8')
     data = data['question'].tolist()
+    # data = read('./test_data/seq.in')
     disease = []
     symptom = []
     cnt = 0
@@ -51,11 +52,10 @@ if __name__ == '__main__':
         else:
             symptom.append(s)
 
-    print("Can extract : {}".format(cnt/len(data)))
     print(len(data),len(disease),len(symptom))
     df = pd.DataFrame({
         'question': data,
         'disease': disease, 
         'symptom' : symptom,
     })
-    df.to_csv('result.csv',encoding='utf-8')
+    df.to_csv('resultA.csv',encoding='utf-8')

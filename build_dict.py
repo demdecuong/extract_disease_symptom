@@ -20,6 +20,8 @@ def build_entities(path='./data/entities.json'):
     data = ast.literal_eval(data)
     disease = data['DISEASE']
     symptoms = data['SYMPTOMS']
+    diag = data['DIAG']
+    overview = data['OVERVIEW']
 
     disease_ent = []
     symptom_ent = []
@@ -28,6 +30,10 @@ def build_entities(path='./data/entities.json'):
 
     for k in symptoms.keys():
         symptom_ent.extend(symptoms[k])
+    for k in diag.keys():
+        symptom_ent.extend(diag[k])
+    for k in overview.keys():
+        symptom_ent.extend(overview[k])
 
     print("Saving entites to file ...")
     save(disease_ent,'data/disease_entities.txt')

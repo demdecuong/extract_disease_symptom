@@ -42,3 +42,26 @@ def tokenize(sentence):
     sent = sentence.replace('\n','').strip()
     sent = re.sub('(?<! )(?=[.,!?()])|(?<=[.,!?()])(?! )', r' ', sent)
     return sent
+
+def get_entities(mess,preds):
+    entities = []
+    tmp = []
+    for token,label in zip(mess,preds):
+        if 'B' in label or 'I' in label:
+            tmp.append(token)
+        elif label=='O' and tmp != []:
+            if len(tmp) > 1:
+                tmp= ' '.join(tmp)
+            else:
+                tmp = tmp[0]
+            entities.append(tmp)
+            tmp = [] 
+    if tmp != []:
+        if len(tmp) > 1:
+            tmp= ' '.join(tmp)
+        else:
+            tmp = tmp[0]
+        entities.append(tmp)
+        tmp = []
+
+    return entities
