@@ -22,5 +22,14 @@ The output dictionary will be stored in `./saved_dict`
     # Return list of disease and symptom
     d , s = my_dict.get_ner(sentence)
     print(d,s)
+    # Output
+    # ['ung thư gan'] ['sốt', 'chóng mặt']
 
-Dictionary is in `ahocorasik.py`
+
+### Evaluate on test set A
+    python evaluate.py 
+
+    # Output
+    Total Accuracy 0.9532681824139623  
+    Accuracy of Disease 1.0  
+    Accuracy of Symptom 0.8675588196785163  

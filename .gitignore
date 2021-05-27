@@ -3,4 +3,4 @@
 ./saved_dict/disease_dict
 ./saved_dict/symptom_dict
 ./utils/__pycache__
-./__pycache__
+__pycache__

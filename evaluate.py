@@ -91,6 +91,7 @@ if __name__ == '__main__':
 
         acc += ((a+b)/2)
 
-    print(acc/len(target))
-    print(cnt_disease/disease_case)
-    print(cnt_symptom/symptom_case)
+    print("Evaluate on Test Set A")
+    print("Total Accuracy",acc/len(target))
+    print("Accuracy of Disease",cnt_disease/disease_case)
+    print("Accuracy of Symptom",cnt_symptom/symptom_case)

@@ -5,6 +5,12 @@ import ast
 
 from utils.utils import read, save, read_dict, save_dict 
 
+def read(path):
+    data = []
+    with open(path,'r') as f:
+        for line in f:
+            data.append(line.replace('\n',''))
+    return data
 
 def build_entities(path='./data/entities.json'):
     '''
@@ -35,6 +41,10 @@ def build_entities(path='./data/entities.json'):
     for k in overview.keys():
         symptom_ent.extend(overview[k])
 
+    hhh_symptom = read('./data/symptoms.txt')
+    hhh_disease = read('./data/disease.txt')
+    symptom_ent.extend(hhh_symptom)
+    disease_ent.extend(hhh_disease)
     print("Saving entites to file ...")
     save(disease_ent,'data/disease_entities.txt')
     save(symptom_ent,'data/symptom_entities.txt')
