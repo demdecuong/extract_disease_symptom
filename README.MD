@@ -1,7 +1,7 @@
 # Extract Diseases/Symptoms with Aho-corasik
 
 ## installation
-`pip install pyahocorasick`
+`pip install -r requirement.txt`
 
 ## Features
 
@@ -20,11 +20,15 @@ The output dictionary will be stored in `./saved_dict`
     '''
 
     # Return list of disease and symptom
-    d , s = my_dict.get_ner(sentence)
+    d , s = my_dict.get_ner(sentence,mode='aho')
     print(d,s)
     # Output
     # ['ung thư gan'] ['sốt', 'chóng mặt']
 
+There are 3 modes : `['aho','edit','ahoedit']`
+- aho : use aho-corasik to search in dict
+- edit : use edit-distance to search in dict
+- ahoedit : use both strategy then combine the result
 
 ### Evaluate on test set A
     python evaluate.py 

@@ -1,4 +1,5 @@
 from ahocorasik import Dictionary
+import ahocorasick
 
 
 if __name__ == '__main__':
@@ -8,5 +9,5 @@ if __name__ == '__main__':
     '''
 
     # Return list of disease and symptom
-    d , s = my_dict.get_ner(sentence)
+    d , s = my_dict.get_ner(sentence,mode='edit')
     print(d,s)
