@@ -1,4 +1,0 @@
-pyahocorasick
-fuzzywuzzy
-google_trans_new
-tqdm
