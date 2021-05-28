@@ -1,9 +1,12 @@
 import pandas as pd
 import ahocorasick
+import pkg_resources
+import string
 
 from utils.utils import read_dict, get_ngram, read
 from edit_distance import Distance
 from tqdm import tqdm 
+from symspellpy import SymSpell, Verbosity
 
 class Dictionary:
     def __init__(self,di_path='./saved_dict/disease_dict',sy_path='./saved_dict/symptom_dict',n_gram = 5,di_threshold=0.8,sy_threshold=0.8):
@@ -17,10 +20,17 @@ class Dictionary:
         
         self.di_threshold = di_threshold
         self.sy_threshold = sy_threshold
+        
+        # Correction Module
+        self.sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
+        self.dictionary_path = pkg_resources.resource_filename("symspellpy", "frequency_dictionary_en_82_765.txt")
+        self.sym_spell.load_dictionary(self.dictionary_path, term_index=0, count_index=1)
 
-    def get_ner(self,sentence,mode='aho'):
+    def get_ner(self,sentence,mode='aho',correct=False):
         assert mode in ['aho','edit','ahoedit']
         
+        if correct:
+            sentence = self.soft_correct(sentence)
         if mode == 'edit':
             disease, symptoms = self.get_ner_edit(sentence)
         
@@ -60,7 +70,7 @@ class Dictionary:
         return disease, symptoms
 
     def get_ner_edit(self,sentence):
-        # Edit-distance searching 
+        # Edit-distance searching
         disease = []
         symptoms = []
         for i in range(2,self.max_n_gram):
@@ -78,13 +88,28 @@ class Dictionary:
         disease = list(set(disease))
         symptoms = list(set(symptoms))
         return disease, symptoms
+
     def get_disease(self,s):
         return self.di_dict.get(s,'not_exists')
 
     def get_symptom(self,s):
         return self.sy_dict.get(s,'not_exists')
 
-
+    def soft_correct(self,sentence):
+        return_setence = []
+        for token in sentence.lower().replace('\n','').strip().split(' '):
+            if token in string.punctuation:
+                return_setence.append(token)
+                continue
+            try:
+                suggestions = self.sym_spell.lookup(token, Verbosity.CLOSEST,
+                                            max_edit_distance=2, include_unknown=True)[0]
+                return_setence.append(suggestions._term)
+            except:
+                return_setence.append(token)
+        print(return_setence)
+        return ' '.join(return_setence)
+    
 if __name__ == '__main__':
     my_dict = Dictionary()
 
