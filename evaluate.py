@@ -1,6 +1,6 @@
 import ast
 import pandas as pd
-from ahocorasik import Dictionary
+from ahocorasick import Dictionary
 from utils.utils import read_dict, get_ngram, read, get_entities, save
 
 

@@ -1,4 +1,4 @@
-from ahocorasik import Dictionary
+from ahocorasick import Dictionary
 import ahocorasick
 
 
