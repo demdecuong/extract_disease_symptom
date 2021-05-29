@@ -3,14 +3,16 @@ import pickle
 import json
 import ast
 
-from utils.utils import read, save, read_dict, save_dict 
+from ds_extraction.utils.utils import read, save, read_dict, save_dict
+
 
 def read(path):
     data = []
-    with open(path,'r') as f:
+    with open(path, 'r') as f:
         for line in f:
-            data.append(line.replace('\n',''))
+            data.append(line.replace('\n', ''))
     return data
+
 
 def build_entities(path='./data/entities.json'):
     '''
@@ -46,17 +48,22 @@ def build_entities(path='./data/entities.json'):
     symptom_ent.extend(hhh_symptom)
     disease_ent.extend(hhh_disease)
     print("Saving entites to file ...")
-    save(disease_ent,'data/disease_entities.txt')
-    save(symptom_ent,'data/symptom_entities.txt')
+    save(disease_ent, 'data/disease_entities.txt')
+    save(symptom_ent, 'data/symptom_entities.txt')
 
-def build_dict(di_path='./data/disease_entities.txt',sy_path='./data/symptom_entities.txt'):
-    
+
+def build_dict(
+        di_path='./data/disease_entities.txt',
+        sy_path='./data/symptom_entities.txt',
+        di_out = './saved_dict/disease_dict',
+        sy_out = './saved_dict/symptom_dict'):
+
     disease_entities = read(di_path)
     symptom_entities = read(sy_path)
 
     disease_dict = ahocorasick.Automaton()
     symptom_dict = ahocorasick.Automaton()
-    
+
     idx = 0
     for key in disease_entities:
         if disease_dict.get('cat', 'not_exists') == 'not_exists':
@@ -67,22 +74,23 @@ def build_dict(di_path='./data/disease_entities.txt',sy_path='./data/symptom_ent
     for key in symptom_entities:
         if symptom_dict.get('cat', 'not_exists') == 'not_exists':
             symptom_dict.add_word(key, (idx, key))
-            idx += 1    
+            idx += 1
 
-    disease_dict.make_automaton()    
-    symptom_dict.make_automaton()    
+    disease_dict.make_automaton()
+    symptom_dict.make_automaton()
 
     print('Saving dictionary ...')
-    with open('./saved_dict/disease_dict', 'wb') as file:
+    with open(di_out, 'wb') as file:
         pickle.dump(disease_dict, file)
 
-    with open('./saved_dict/symptom_dict', 'wb') as file:
+    with open(sy_out, 'wb') as file:
         pickle.dump(symptom_dict, file)
-
-# print(B.get('cat', 'not exists'))
-# print(B.get('minh','not exists'))
-# print(B.get('she'))
 
 if __name__ == '__main__':
     build_entities()
-    build_dict()    
+    build_dict(
+        di_path='./data/disease_entities.txt',
+        sy_path='./data/symptom_entities.txt',
+        di_out = './ds_extraction/saved_dict/disease_dict',
+        sy_out = './ds_extraction/saved_dict/symptom_dict'
+    )
