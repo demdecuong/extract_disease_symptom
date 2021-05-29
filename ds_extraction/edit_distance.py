@@ -1,5 +1,5 @@
 from fuzzywuzzy import fuzz
-from utils.preprocess import PreProcess
+from ds_extraction.utils.preprocess import PreProcess
 
 class Distance:
     def __init__(self):

@@ -34,6 +34,7 @@ setup(
     version=VERSION,
     description='ahocorasick is a library for extracting disease, symptom in the medical domain',
     long_description=long_description,
+    include_package_data=True,
     url='https://github.com/demdecuong/extract_disease_symptom',
     packages=find_packages(),
     author='minhnp',

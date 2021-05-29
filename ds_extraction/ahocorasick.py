@@ -1,9 +1,8 @@
 import pandas as pd
-import ahocorasick
+from tqdm import tqdm
 
-from utils.utils import read_dict, get_ngram, read
-from edit_distance import Distance
-from tqdm import tqdm 
+from ds_extraction.edit_distance import Distance
+from ds_extraction.utils.utils import read_dict, get_ngram, read
 
 class Dictionary:
     def __init__(self,di_path='./saved_dict/disease_dict',sy_path='./saved_dict/symptom_dict',n_gram = 5,di_threshold=0.8,sy_threshold=0.8):
