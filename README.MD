@@ -20,16 +20,19 @@ The output dictionary will be stored in `./saved_dict`
     '''
 
     # Return list of disease and symptom
-    d , s = my_dict.get_ner(sentence,mode='aho')
+    d , s = my_dict.get_ner(sentence,mode='aho',correct=False)
     print(d,s)
     # Output
     # ['ung thư gan'] ['sốt', 'chóng mặt']
 
-There are 3 modes : `['aho','edit','ahoedit']`
-- aho : use aho-corasik to search in dict
-- edit : use edit-distance to search in dict
-- ahoedit : use both strategy then combine the result
+- There are 3 modes : `['aho','edit','ahoedit']`
+    - aho : use aho-corasik to search in dict
+    - edit : use edit-distance to search in dict
+    - ahoedit : use both strategy then combine the result
 
+- correct mode:
+    - token correction by edit-distance
+    - This mode currently support English 
 ### Evaluate on test set A
     python evaluate.py 
 

@@ -2,8 +2,11 @@
 ./data/symptom_entities.txt
 ./saved_dict/disease_dict
 ./saved_dict/symptom_dict
-./utils/__pycache__
-__pycache__
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
 # IDE & Editor folder
 /.vscode/
