@@ -1,4 +1,4 @@
-from ds_extraction.ahocorasick import Dictionary
+from ds_extraction.vb_ahocorasick import Dictionary
 
 if __name__ == '__main__':
     my_dict = Dictionary()

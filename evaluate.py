@@ -1,6 +1,6 @@
 import ast
 import pandas as pd
-from ds_extraction.ahocorasick import Dictionary
+from ds_extraction.vb_ahocorasick import Dictionary
 from ds_extraction.utils.utils import read_dict, get_ngram, read, get_entities, save
 
 

@@ -40,7 +40,7 @@ setup(
     author='minhnp',
     author_email='v.minhng@vinbrain.net',
     classifiers=[
-        'Programming Language :: Python :: 3.x',
+        'Programming Language :: Python :: 3',
     ],
     install_requires=reqs,
     keywords='ds_extraction',
