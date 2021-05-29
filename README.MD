@@ -12,7 +12,7 @@ The input is from `./data./entities.json`
 
 The output dictionary will be stored in `./saved_dict`
 ### Usage
-    from ahocorasick import Dictionary
+    from ds_extraction.ahocorasick import Dictionary
 
     my_dict = Dictionary()
     sentence = '''

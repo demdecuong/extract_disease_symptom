@@ -1,3 +1,5 @@
+
+import os
 import pandas as pd
 import pkg_resources
 import string
@@ -7,10 +9,14 @@ from symspellpy import SymSpell, Verbosity
 from ds_extraction.edit_distance import Distance
 from ds_extraction.utils.utils import read_dict, get_ngram, read
 
+WORK_DIR = os.path.dirname(os.path.abspath(__file__))
+DI_PATH = os.path.join(WORK_DIR, "saved_dict/disease_dict")
+SY_PATH = os.path.join(WORK_DIR, "saved_dict/symptom_dict")
+
 class Dictionary:
-    def __init__(self,di_path='./saved_dict/disease_dict',sy_path='./saved_dict/symptom_dict',n_gram = 5,di_threshold=0.8,sy_threshold=0.8):
-        self.di_dict = read_dict(di_path)
-        self.sy_dict = read_dict(sy_path)
+    def __init__(self,n_gram = 5,di_threshold=0.8,sy_threshold=0.8):
+        self.di_dict = read_dict(DI_PATH)
+        self.sy_dict = read_dict(SY_PATH)
         self.max_n_gram = n_gram
         self.distance = Distance()
         

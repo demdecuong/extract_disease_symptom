@@ -30,9 +30,9 @@ except:
 VERSION = os.getenv('PACKAGE_VERSION', 'v0.0.1')[1:]
 
 setup(
-    name='ahocorasick',
+    name='ds_extraction',
     version=VERSION,
-    description='ahocorasick is a library for extracting disease, symptom in the medical domain',
+    description='DS Extraction is a library for extracting disease, symptom in the medical domain',
     long_description=long_description,
     include_package_data=True,
     url='https://github.com/demdecuong/extract_disease_symptom',
@@ -43,8 +43,8 @@ setup(
         'Programming Language :: Python :: 3.x',
     ],
     install_requires=reqs,
-    keywords='ahocorasick',
+    keywords='ds_extraction',
     python_requires='>=3.6',
-    py_modules=['ahocorasick'],
+    py_modules=['ds_extraction'],
 
 )

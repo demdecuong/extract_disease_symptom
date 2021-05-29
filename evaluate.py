@@ -1,7 +1,7 @@
 import ast
 import pandas as pd
-from ahocorasick import Dictionary
-from utils.utils import read_dict, get_ngram, read, get_entities, save
+from ds_extraction.ahocorasick import Dictionary
+from ds_extraction.utils.utils import read_dict, get_ngram, read, get_entities, save
 
 
 if __name__ == '__main__':
