@@ -27,7 +27,7 @@ try:
 except:
     reqs = [str(ir.requirement) for ir in install_reqs]
 
-VERSION = os.getenv('PACKAGE_VERSION', 'v0.0.1')[1:]
+VERSION = os.getenv('PACKAGE_VERSION', 'v0.0.2')[1:]
 
 setup(
     name='ds_extraction',
