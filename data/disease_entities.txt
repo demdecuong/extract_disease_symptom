@@ -326,6 +326,7 @@ food allergies and intolerance
 hereditary ataxia
 alzheimer's disease
 biliary cirrhosis
+cirrhosis
 neonatal hemolytic disease
 retroperitoneal fluid infiltration
 bacterial liver abscess

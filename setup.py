@@ -27,11 +27,11 @@ try:
 except:
     reqs = [str(ir.requirement) for ir in install_reqs]
 
-VERSION = os.getenv('PACKAGE_VERSION', 'v0.0.2')[1:]
+VERSION = os.getenv('PACKAGE_VERSION', 'v0.0.1')[1:]
 
 setup(
     name='ds_extraction',
-    version=VERSION,
+    version='v0.0.3',
     description='DS Extraction is a library for extracting disease, symptom in the medical domain',
     long_description=long_description,
     include_package_data=True,
